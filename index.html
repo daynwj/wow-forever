@@ -1,577 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WoW: Forever — Roster Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
-
   :root {
-    --bg: #1a1d24;
-    --bg-raised: #21252d;
-    --ink: #e8e3d5;
-    --ink-dim: #a6a598;
-    --ink-faint: #71716b;
-    --rule: #383c46;
-    --pvp: #b5605f;
-    --pvp-dim: #7a4142;
-    --pvp-bg: #2a2020;
-    --normal: #4f9191;
-    --normal-dim: #366363;
-    --normal-bg: #1c2626;
-    --gold: #c9a05c;
-    --font-display: 'Roboto Slab', serif;
-    --font-body: 'Inter', sans-serif;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) {
-      --bg: #f2efe6;
-      --bg-raised: #ffffff;
-      --ink: #23211d;
-      --ink-dim: #5c5a52;
-      --ink-faint: #8b8980;
-      --rule: #d8d3c4;
-      --pvp-bg: #f7e9e8;
-      --normal-bg: #e7f0ef;
-    }
-  }
-  :root[data-theme="light"] {
-    --bg: #f2efe6;
-    --bg-raised: #ffffff;
-    --ink: #23211d;
-    --ink-dim: #5c5a52;
-    --ink-faint: #8b8980;
-    --rule: #d8d3c4;
-    --pvp-bg: #f7e9e8;
-    --normal-bg: #e7f0ef;
-  }
-
-  * { box-sizing: border-box; }
-  html {
-    scroll-padding-top: env(safe-area-inset-top, 0px);
-  }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-body);
-    line-height: 1.55;
+    --red: #C8102E;          /* Ferrari red: PvP ruleset */
+    --blue: #0033A0;         /* Kentucky blue: Normal ruleset */
+    --ink: #16181D;
+    --ink-2: #4A4F5A;
+    --line: #D9DCE3;
+    --page: #FFFFFF;
+    --panel: #F5F6F8;
+    --bench: #6B6F78;
+    --ok: #1E7B45;
+    --warn: #8A5A00;
+    --ok-soft: #E6F3EB;
+    --warn-soft: #FBF1DD;
+    box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --red: #FF5A6E;
+      --blue: #7FA2FF;
+      --ink: #F1F2F5; --ink-2: #B4B8C2;
+      --line: #343844; --page: #121419; --panel: #1C1F26;
+      --bench: #9CA0AA; --ok: #6FD39A; --warn: #F2C14E;
+      --ok-soft: #173024; --warn-soft: #33290F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --red: #FF5A6E;
+    --blue: #7FA2FF;
+    --ink: #F1F2F5; --ink-2: #B4B8C2;
+    --line: #343844; --page: #121419; --panel: #1C1F26;
+    --bench: #9CA0AA; --ok: #6FD39A; --warn: #F2C14E;
+    --ok-soft: #173024; --warn-soft: #33290F;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); background: var(--page); }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font-family: "Barlow", "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px; line-height: 1.55;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 22px; }
+  a { color: var(--blue); }
+  a:focus-visible, summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 
-  a { color: var(--gold); }
+  /* Hero: the ruleset split is the memorable element */
+  header { padding: 56px 0 28px; }
+  .kicker { color: var(--ink-2); font-weight: 600; margin: 0 0 8px; }
+  h1 { font-size: clamp(2.4rem, 7vw, 4.2rem); line-height: 1.02; margin: 0 0 14px; font-weight: 800; letter-spacing: -0.02em; }
+  .lede { max-width: 62ch; color: var(--ink-2); font-size: 1.1rem; margin: 0 0 26px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px 26px; margin: 0; padding: 0; list-style: none; font-size: 0.95rem; }
+  .facts b { display: block; font-weight: 700; color: var(--ink); }
+  .facts span { color: var(--ink-2); }
 
-  .wrap {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+  .split { display: grid; grid-template-columns: 3fr 2fr; margin: 40px 0 0; border-radius: 6px; overflow: hidden; }
+  .split > div { padding: 16px 20px; color: var(--page); font-weight: 700; }
+  .split .pvp { background: var(--red); }
+  .split .normal { background: var(--blue); }
+  .split small { display: block; font-weight: 500; opacity: .95; }
 
-  /* ---------- Header ---------- */
-  header.top {
-    padding: 64px 0 40px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .kicker {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.8rem;
-    color: var(--gold);
-    letter-spacing: 0.03em;
-    margin: 0 0 10px;
-  }
-  h1 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(2rem, 5vw, 3.4rem);
-    line-height: 1.06;
-    margin: 0 0 18px;
-    max-width: 18ch;
-  }
-  .dek {
-    font-size: 1.08rem;
-    color: var(--ink-dim);
-    max-width: 62ch;
-    margin: 0 0 22px;
-  }
-  .meta-line {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 22px;
-    font-size: 0.88rem;
-    color: var(--ink-faint);
-  }
-  .meta-line strong { color: var(--ink-dim); font-weight: 600; }
+  main section { padding: 44px 0 10px; }
+  h2 { font-size: 1.8rem; margin: 0 0 6px; font-weight: 800; letter-spacing: -0.01em; }
+  .sub { color: var(--ink-2); margin: 0 0 24px; max-width: 64ch; }
 
-  /* ---------- Camps ---------- */
-  .camps {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    margin-top: 8px;
+  .camp { display: grid; gap: 18px; }
+  .char {
+    background: var(--panel); border-radius: 6px; padding: 22px 22px 18px;
+    border-left: 6px solid var(--red);
   }
-  .camp {
-    padding: 44px 0;
-  }
-  .camp.pvp { padding-right: 40px; border-right: 1px solid var(--rule); }
-  .camp.normal { padding-left: 40px; }
+  .char.normal { border-left-color: var(--blue); }
+  .char.bench { border-left-color: var(--bench); border-left-style: dashed; }
+  .char h3 { margin: 0; font-size: 1.4rem; font-weight: 700; }
+  .role { margin: 2px 0 14px; color: var(--ink-2); font-weight: 600; }
+  .char p { margin: 0 0 14px; max-width: 70ch; }
+  dl.kit { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0 0 12px; }
+  dl.kit dt { font-weight: 700; }
+  dl.kit dd { margin: 0; }
+  details { margin-top: 8px; border-top: 1px solid var(--line); padding-top: 10px; }
+  summary { cursor: pointer; font-weight: 700; color: var(--ink); }
+  details p, details ul { margin: 10px 0; }
+  details ul { padding-left: 1.2em; }
+  .tag { display: inline-block; font-size: 0.8rem; font-weight: 700; padding: 1px 8px; border-radius: 3px; vertical-align: middle; margin-left: 6px; }
+  .tag.u { background: var(--warn-soft); color: var(--warn); }
+  .tag.v { background: var(--ok-soft); color: var(--ok); }
 
-  .camp-head {
-    margin-bottom: 28px;
-  }
-  .camp-tag {
-    display: inline-block;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.78rem;
-    padding: 4px 10px;
-    border-radius: 3px;
-    margin-bottom: 12px;
-  }
-  .pvp .camp-tag { background: var(--pvp-bg); color: var(--pvp); }
-  .normal .camp-tag { background: var(--normal-bg); color: var(--normal); }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 0.97rem; }
+  th, td { text-align: left; padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 700; color: var(--ink-2); border-bottom: 2px solid var(--line); }
+  td.rs-pvp { color: var(--red); font-weight: 700; }
+  td.rs-normal { color: var(--blue); font-weight: 700; }
+  td.rs-bench { color: var(--bench); font-weight: 700; }
 
-  .camp h2 {
-    font-family: var(--font-display);
-    font-size: 1.55rem;
-    margin: 0 0 8px;
-  }
-  .camp .camp-sub {
-    color: var(--ink-dim);
-    font-size: 0.95rem;
-    max-width: 46ch;
-    margin: 0;
-  }
+  .note { background: var(--panel); border-radius: 6px; padding: 16px 20px; margin: 20px 0 0; max-width: 78ch; }
+  .note p { margin: 0 0 8px; }
+  .note p:last-child { margin: 0; }
 
-  /* ---------- Character cards ---------- */
-  .card {
-    background: var(--bg-raised);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-    padding: 26px 26px 24px;
-    margin-bottom: 22px;
-  }
-  .card-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 4px;
-    flex-wrap: wrap;
-  }
-  .card h3 {
-    font-family: var(--font-display);
-    font-size: 1.28rem;
-    margin: 0;
-  }
-  .role-badge {
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--ink-faint);
-    white-space: nowrap;
-  }
-  .pvp .role-badge { color: var(--pvp-dim); }
-  .normal .role-badge { color: var(--normal-dim); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .two h3 { font-size: 1.15rem; margin: 0 0 8px; }
+  .two ul { margin: 0; padding-left: 1.2em; }
+  .two li { margin-bottom: 8px; }
 
-  .card .identity {
-    font-size: 0.96rem;
-    color: var(--ink-dim);
-    margin: 8px 0 18px;
-  }
+  ol.qs { padding-left: 1.3em; max-width: 78ch; }
+  ol.qs li { margin-bottom: 10px; }
 
-  .facts {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 7px 14px;
-    font-size: 0.88rem;
-    margin-bottom: 16px;
-  }
-  .facts dt {
-    color: var(--ink-faint);
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  .facts dd {
-    margin: 0;
-    color: var(--ink);
-  }
+  footer { border-top: 1px solid var(--line); margin-top: 48px; padding: 24px 0 48px; color: var(--ink-2); font-size: 0.93rem; }
+  footer p { max-width: 78ch; margin: 0 0 8px; }
 
-  details.expand {
-    border-top: 1px solid var(--rule);
-    padding-top: 12px;
-    margin-top: 4px;
-  }
-  details.expand summary {
-    cursor: pointer;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--gold);
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  details.expand summary::-webkit-details-marker { display: none; }
-  details.expand summary::before {
-    content: '+';
-    display: inline-block;
-    width: 1em;
-  }
-  details.expand[open] summary::before { content: '–'; }
-  details.expand .expand-body {
-    padding-top: 12px;
-    font-size: 0.88rem;
-    color: var(--ink-dim);
-  }
-  details.expand .expand-body p { margin: 0 0 10px; }
-  details.expand .expand-body p:last-child { margin-bottom: 0; }
-  details.expand .expand-body strong { color: var(--ink); }
-
-  .flag {
-    display: block;
-    margin-top: 12px;
-    padding: 10px 12px;
-    border-radius: 4px;
-    font-size: 0.82rem;
-    background: rgba(201, 160, 92, 0.1);
-    border-left: 2px solid var(--gold);
-    color: var(--ink-dim);
-  }
-
-  /* ---------- Shared professions row ---------- */
-  .shared {
-    grid-column: 1 / -1;
-    padding: 34px 0 0;
-    border-top: 1px solid var(--rule);
-    margin-top: 6px;
-    text-align: center;
-  }
-  .shared p {
-    font-size: 0.95rem;
-    color: var(--ink-dim);
-    max-width: 56ch;
-    margin: 0 auto;
-  }
-  .shared strong { color: var(--ink); }
-
-  /* ---------- Lower sections ---------- */
-  section.block {
-    padding: 52px 0;
-    border-top: 1px solid var(--rule);
-  }
-  section.block h2 {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    margin: 0 0 22px;
-  }
-
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
-  }
-  .two-col h3 {
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.95rem;
-    margin: 0 0 12px;
-    color: var(--ink);
-  }
-  .two-col ul, .plain ul {
-    margin: 0;
-    padding-left: 18px;
-    font-size: 0.92rem;
-    color: var(--ink-dim);
-  }
-  .two-col li, .plain li { margin-bottom: 9px; }
-  .two-col li strong, .plain li strong { color: var(--ink); }
-
-  table.calendar {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-  }
-  table.calendar th {
-    text-align: left;
-    font-weight: 600;
-    color: var(--ink-faint);
-    padding: 8px 14px 8px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  table.calendar td {
-    padding: 12px 14px 12px 0;
-    border-bottom: 1px solid var(--rule);
-    color: var(--ink-dim);
-    vertical-align: top;
-  }
-  table.calendar td:first-child, table.calendar th:first-child {
-    color: var(--ink);
-    font-weight: 600;
-    white-space: nowrap;
-  }
-  .conf {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 2px 7px;
-    border-radius: 3px;
-    background: var(--rule);
-    color: var(--ink-dim);
-  }
-  table.calendar tr:last-child td { border-bottom: none; }
-
-  .open-q {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-size: 0.92rem;
-  }
-  .open-q li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--rule);
-    color: var(--ink-dim);
-    display: flex;
-    gap: 12px;
-  }
-  .open-q li:last-child { border-bottom: none; }
-  .open-q .q-mark {
-    color: var(--gold);
-    font-family: var(--font-display);
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  footer.foot {
-    padding: 32px 0 56px;
-    border-top: 1px solid var(--rule);
-    font-size: 0.82rem;
-    color: var(--ink-faint);
-  }
-  footer.foot p { max-width: 70ch; margin: 0 0 8px; }
-
-  /* ---------- Responsive ---------- */
-  @media (max-width: 860px) {
-    .camps { grid-template-columns: 1fr; }
-    .camp.pvp { border-right: none; border-bottom: 1px solid var(--rule); padding-right: 0; padding-bottom: 40px; }
-    .camp.normal { padding-left: 0; padding-top: 40px; }
-    .two-col { grid-template-columns: 1fr; gap: 28px; }
-    table.calendar { font-size: 0.84rem; }
+  @media (max-width: 720px) {
+    body { font-size: 16px; }
+    header { padding-top: 36px; }
+    .split, .two { grid-template-columns: 1fr; }
+    dl.kit { grid-template-columns: 1fr; gap: 2px; }
+    dl.kit dd { margin-bottom: 8px; }
   }
 </style>
 </head>
 <body>
-
 <div class="wrap">
-  <header class="top">
-    <p class="kicker">Video Games Second Brain — Character Roster Plan</p>
-    <h1>World of Warcraft: Forever</h1>
-    <p class="dek">Four characters across two rulesets, built for a ranged-control, self-sustain playstyle and two very different play windows: solo 45-minute sessions, and co-op whenever Erik's online.</p>
-    <div class="meta-line">
-      <span><strong>Launch</strong> Nov 4, 2026, 3:00&nbsp;pm PST</span>
-      <span><strong>Beta</strong> Sept 17 – Oct 21, 2026</span>
-      <span><strong>Last reconciled</strong> Sept 26, 2026</span>
-      <span><strong>Source of truth</strong> Verification Log, Game Library — Video Games Second Brain (Notion)</span>
-    </div>
-  </header>
-
-  <div class="camps">
-    <!-- ============ PVP CAMP ============ -->
-    <div class="camp pvp">
-      <div class="camp-head">
-        <span class="camp-tag">PvP Ruleset · Horde</span>
-        <h2>The Erik Camp</h2>
-        <p class="camp-sub">Faction-locked ruleset. World PvP is always on in contested zones. Battlegrounds mix in players from other rulesets except Hardcore, but open-world play is Horde-only company here — Erik, his coworkers, maybe his old raid crew.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-top">
-          <h3>Troll Affliction Warlock</h3>
-          <span class="role-badge">Main · Solo + Co-op</span>
-        </div>
-        <p class="identity">DoTs, drain healing, and Life Tap keep this character sustained through a 45-minute solo session with almost no downtime. A Voidwalker holds a second body on the field. Affliction doubles as a world-PvP nuisance — hard to kill, hard to ignore.</p>
-        <dl class="facts">
-          <dt>Race</dt><dd>Troll — Berserking, Rapid Regeneration (50% HP over time, no corpse needed), in-combat Regeneration, Beast Slaying</dd>
-          <dt>Professions</dt><dd>Herbalism + Alchemy</dd>
-          <dt>Pet</dt><dd>Voidwalker</dd>
-        </dl>
-        <details class="expand">
-          <summary>Talents &amp; leveling notes</summary>
-          <div class="expand-body">
-            <p><strong>Early:</strong> Improved Corruption, Improved Life Tap, Suppression (5 ranks, 4% threat reduction / 1% hit per rank), Soul Harvesting.</p>
-            <p><strong>Around 30:</strong> Siphon Life.</p>
-            <p><strong>Toward 60:</strong> Nightfall, Pandemic (up to 33%/rank crit-damage bonus on DoTs), Malevolence, Soul Siphon, Wrack capstone.</p>
-            <p>Community reports a new 100-yard "Move To" pet command in the beta — lets you position the Voidwalker without relying on Follow/Stay. Unverified whether it survives to launch.</p>
-          </div>
-        </details>
-        <span class="flag">In dungeons with Erik's bear: the Voidwalker has reportedly out-threatened tanks in testing. Turn off its taunt-type abilities in group content.</span>
-      </div>
-
-      <div class="card">
-        <div class="card-top">
-          <h3>Skyborne (Windshaper) Druid</h3>
-          <span class="role-badge">Alt · Co-op with Erik</span>
-        </div>
-        <p class="identity">Leans Resto for duo play — off-healing while Erik tanks, Prowl for scouting ahead without spending a talent point on it, flag-running when a battleground calls for speed over sustain.</p>
-        <dl class="facts">
-          <dt>Race</dt><dd>Skyborne (Windshaper) — Walk on Air, Wind Blessed (+1% haste), Elemental Insight (+5% vs. Elementals), Skysight</dd>
-          <dt>Professions</dt><dd>Mining + Engineering</dd>
-          <dt>Requires</dt><dd>Skyborne Heroic Pack or higher (not yet purchased)</dd>
-        </dl>
-        <details class="expand">
-          <summary>Spec &amp; healing notes</summary>
-          <div class="expand-body">
-            <p>Rejuvenation, Tranquility, and Wild Growth can all crit in Forever. Bonus healing also adds roughly a third as much bonus spell damage, which helps a hybrid spec more than in Classic.</p>
-            <p>Prowl is reportedly a trainer spell learned at level 20 — available to any spec, not gated behind Feral talents. Feral Swiftness (the 30% Cat Form speed boost used for flag running) is still Feral-only, so a Resto-leaning Druid scouts fine but runs flags slower than a dedicated Feral would.</p>
-            <p>Moonkin Form's party crit aura doesn't stack with Leader of the Pack, which Erik's Bear likely carries — one more reason Resto pairs better with him than Balance.</p>
-          </div>
-        </details>
-        <span class="flag">Dual spec has not been announced for Forever. Pick the leveling spec knowing a respec may cost Classic-level gold once the beta's 1-silver price goes away.</span>
-      </div>
-    </div>
-
-    <!-- ============ NORMAL CAMP ============ -->
-    <div class="camp normal">
-      <div class="camp-head">
-        <span class="camp-tag">Normal Ruleset · Horde (to confirm)</span>
-        <h2>The Julie Camp</h2>
-        <p class="camp-sub">Separate economy from the PvP camp — no shared mail, no shared auction house. This character has to be fully self-sufficient. Still open: whether Julie's group is actually Horde. If not, the race below falls back to Skyborne (High Order).</p>
-      </div>
-
-      <div class="card">
-        <div class="card-top">
-          <h3>Undead Frost Mage</h3>
-          <span class="role-badge">Solo · Occasional Group with Julie</span>
-        </div>
-        <p class="identity">The most self-sufficient of the four — Cannibalize handles health and mana between pulls with no crafted consumables required. Frost kiting and Shatter combos carry the solo leveling; Ice Lance and Fingers of Frost carry it into battlegrounds.</p>
-        <dl class="facts">
-          <dt>Race</dt><dd>Undead — Cannibalize (35% HP + mana over time; Blizzard has called this out as especially useful for Mages)</dd>
-          <dt>Professions</dt><dd>Tailoring + Enchanting, Fishing</dd>
-        </dl>
-        <details class="expand">
-          <summary>Talents &amp; leveling notes</summary>
-          <div class="expand-body">
-            <p>Ice Lance (11-point talent, 300% damage vs. Frozen targets), Frostbite (15% freeze chance on Chill), a compressed 3-rank Shatter, Fingers of Frost (21 points), reworked Winter's Chill, and a new baseline Frostfire Bolt.</p>
-            <p>Wands no longer scale with spell damage as of the Sept 24 beta notes — plan gear priorities around spellpower gear, not a wand upgrade.</p>
-          </div>
-        </details>
-        <span class="flag">Whether Cannibalize still requires a nearby corpse in Forever hasn't been confirmed. If Julie's crew turns out to be Alliance, this becomes a Skyborne (High Order) Mage instead — same profession plan, no Cannibalize.</span>
-      </div>
-    </div>
-
-    <!-- ============ SHARED ============ -->
-    <div class="shared">
-      <p>All three of Dayn's characters take <strong>Cooking</strong> (Well Fed grants +5% experience from kills, on top of stats) and <strong>First Aid</strong>. No profession is doubled up across characters that can trade — Legacy tradeskill points only come from crafting professions, so redundant gatherers earn nothing.</p>
-    </div>
+<header>
+  <p class="kicker">Video Games Second Brain · character roster plan</p>
+  <h1>World of Warcraft: Forever</h1>
+  <p class="lede">Three characters to play at launch, plus a Mage created early and parked at the auction house as the bank alt. Split across two rulesets, built for ranged control, something else on the field, and solo sessions that stand on their own, with Erik nights as the bonus.</p>
+  <ul class="facts">
+    <li><b>Launch</b><span>Nov 4, 2026, 3:00 pm PST</span></li>
+    <li><b>Beta</b><span>Sept 17 – Oct 21 (wipes at launch)</span></li>
+    <li><b>Roster decided</b><span>Sept 28, 2026</span></li>
+    <li><b>Platform</b><span>PC only (Battle.net). MSI Sword main, MacBook backup, Legion Go being tested</span></li>
+  </ul>
+  <div class="split" aria-label="Ruleset split">
+    <div class="pvp">PvP ruleset, Horde<small>Warlock · Shaman · Mage (bank alt)</small></div>
+    <div class="normal">Normal ruleset<small>Druid</small></div>
   </div>
+</header>
 
-  <!-- ============ ERIK'S BUILD ============ -->
-  <section class="block">
-    <h2>For Erik: Feral Bear Tank Druid</h2>
-    <div class="two-col">
-      <div>
-        <h3>Why this pairs with the Warlock</h3>
-        <ul>
-          <li><strong>Threat management matters more than usual</strong> — the Warlock's Voidwalker has reportedly out-threatened tanks in early testing. Worth calling out taunt timing before a dungeon run, not after a wipe.</li>
-          <li><strong>Skinning + Leatherworking</strong> is the natural profession pairing here, and it's why the Druid alt above took Mining + Engineering instead of doubling up on leather.</li>
-          <li>Fear and Banish from the Warlock cover crowd control the Bear can't provide alone — useful for pulls bigger than the two of you can just tank-and-spank.</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Open questions worth checking together</h3>
-        <ul>
-          <li>Whether every group member can skin the same corpse — Erik's read, not yet confirmed against any source. If true, it changes how much leather actually needs gathering versus buying.</li>
-          <li>Whether War Stomp (if he goes Tauren) or a Troll/Orc racial serves him better as a tank — worth a quick pass once Bear Form's threat tools are confirmed live.</li>
-          <li>Whether he ends up adding a Hunter alt, which would change who's available for dungeon runs on a given night.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<main>
+<section id="pvp">
+  <h2 style="color:var(--red)">The Erik camp</h2>
+  <p class="sub">PvP ruleset, Horde. The whole account is locked to one faction here. Every zone above level 15 is contested and auto-flags you, so anything gathered here is gathered in the open.</p>
 
-  <!-- ============ RULESETS ============ -->
-  <section class="block">
-    <h2>Rulesets, plainly</h2>
-    <div class="two-col plain">
-      <div>
-        <h3>What's confirmed</h3>
-        <ul>
-          <li>No realms — Normal, PvP, and Roleplaying at launch; Hardcore arrives after launch.</li>
-          <li>PvP locks the whole account to one faction. Normal, RP, and Hardcore allow both factions.</li>
-          <li>No cross-ruleset or cross-faction grouping, trading, or (for grouping and trading) shared economy.</li>
-          <li>Battlegrounds <em>do</em> mix players from different rulesets — except Hardcore.</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Still unverified</h3>
-        <ul>
-          <li>Exact <code>/pvp</code> flagging behavior on the Normal ruleset.</li>
-          <li>Whether gold or items can be mailed between your own characters on opposite factions.</li>
-          <li>Whether auction houses are split by faction within a ruleset.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+  <div class="camp">
+    <article class="char">
+      <h3>Troll Affliction Warlock</h3>
+      <p class="role">Main · solo first, co-op when Erik's on</p>
+      <p>DoTs, drain healing and Life Tap keep this character going through a 45-minute solo session with almost no downtime. The Voidwalker holds a second body on the field. With no gathering profession there are no stops at contested nodes: cloth drops from the mobs you're already killing, and Enchanting works from disenchanted gear.</p>
+      <dl class="kit">
+        <dt>Race</dt><dd>Troll: Berserking, Rapid Regeneration (50% health over time, no corpse needed), in-combat Regeneration, Beast Slaying</dd>
+        <dt>Professions</dt><dd>Tailoring + Enchanting</dd>
+        <dt>Secondary</dt><dd>Cooking, First Aid, Fishing</dd>
+        <dt>Pet</dt><dd>Voidwalker</dd>
+        <dt>Mount</dt><dd>Felsteed at 40 <span class="tag u">free: unverified</span></dd>
+      </dl>
+      <details>
+        <summary>Talents and leveling notes</summary>
+        <p><b>Early:</b> Improved Corruption, Improved Life Tap, Suppression (5 ranks, 4% threat reduction and 1% hit per rank), Soul Harvesting.</p>
+        <p><b>Around 30:</b> Siphon Life.</p>
+        <p><b>Toward 60:</b> Nightfall, Pandemic, Malevolence, Soul Siphon, Wrack capstone.</p>
+        <p>A 100-yard "Move To" pet command is community-reported in beta <span class="tag u">unverified</span>. In dungeons the Voidwalker has reportedly out-threatened tanks, so turn off its taunt with Erik's Bear.</p>
+        <p>Tailoring's passive, Cloth Scavenging, gives a chance of extra cloth on humanoids <span class="tag u">community-reported</span>. Robes and enchants made here can gear the Mage later.</p>
+      </details>
+    </article>
 
-  <!-- ============ CALENDAR ============ -->
-  <section class="block">
-    <h2>Dates that affect this plan</h2>
-    <table class="calendar">
-      <thead>
-        <tr><th>Date</th><th>Event</th><th>Why it matters</th><th></th></tr>
-      </thead>
+    <article class="char">
+      <h3>Skyborne Elemental Shaman</h3>
+      <p class="role">Duo alt · played with Erik's Feral Bear when you're in range</p>
+      <p>A ranged caster with totems as the thing on the field, off-heals when the Bear takes a beating, and Ghost Wolf to get out. No stealth, which matters less with a tank beside you. Sturdier than a caster Druid (shield, mail at 40) and no gear competition with Erik: Elemental wants Intellect, his Bear wants Agility and Stamina.</p>
+      <dl class="kit">
+        <dt>Race</dt><dd>Skyborne (Windshaper): Walk on Air, Wind Blessed (+1% haste), Elemental Insight (+5% vs Elementals), Skysight. Picked for the fantasy, not the numbers.</dd>
+        <dt>Professions</dt><dd>Herbalism + Alchemy</dd>
+        <dt>Secondary</dt><dd>Cooking, First Aid, Fishing</dd>
+        <dt>Travel</dt><dd>Ghost Wolf; Improved Ghost Wolf works indoors</dd>
+        <dt>Unlocked by</dt><dd>Skyborne Heroic Pack (bought)</dd>
+      </dl>
+      <details>
+        <summary>Spec and gear notes</summary>
+        <p><b>Elemental to level:</b> Lava Burst, Lightning Overload (Lava Burst and your filler can double-cast at half effect with no extra threat or mana).</p>
+        <p><b>Resto later:</b> Riptide capstone, Chain Heal bonus. Dual spec hasn't been announced, and the launch respec price isn't published (beta is 1 silver).</p>
+        <p>Leather until 40, then mail, is the Classic rule <span class="tag u">Forever unconfirmed</span>. Elemental burns mana fast, so Alchemy's mana potions earn their keep here.</p>
+        <p>Herbalism and Alchemy only advance on the nights this character gets played. Nothing depends on them, though the Mage can use the mana potions later.</p>
+      </details>
+    </article>
+
+    <article class="char bench">
+      <h3>Frost Mage</h3>
+      <p class="role">Bank alt · parked at the auction house · played once the Warlock hits 60</p>
+      <p>Created early and parked at an auction house to hold and sell for the other PvP-ruleset characters. Later it becomes the battleground character, leveled through battlegrounds, solo play and questing. By then the Warlock can make its robes and enchants and the Shaman its mana potions.</p>
+      <dl class="kit">
+        <dt>Race</dt><dd>Open: Undead, Troll or Orc (Horde Skyborne can't be a Mage)</dd>
+        <dt>Professions</dt><dd>Open. Options below.</dd>
+        <dt>Secondary</dt><dd>Cooking, First Aid, Fishing</dd>
+        <dt>Mount</dt><dd>Bought; no class mount</dd>
+      </dl>
+      <details>
+        <summary>Profession options (open)</summary>
+        <p>A parked level-1 Mage has no professions yet: Apprentice needs level 5. Jewelcrafting and Inscription don't exist in Forever. Herbalism, Alchemy, Tailoring and Enchanting would duplicate the Shaman and Warlock.</p>
+        <ul>
+          <li><b>Mining + Engineering</b> (leading option): Mining adds 5% health <span class="tag u">community-reported</span>, and its bars feed Engineering. Engineering's battleground gadgets are untested at the current cap <span class="tag u">unverified</span>.</li>
+          <li><b>Mining + Blacksmithing</b> (runner-up): the Sharpening Wheel camp buff (Attack Power for an hour, from skill 20) helps Erik's Bear <span class="tag v">Blizzard-stated</span>. The Mage can't wear what it makes.</li>
+          <li><b>Engineering + Blacksmithing:</b> covers both crafts nobody else has, but no gathering and no health bonus.</li>
+          <li><b>Mining + Skinning:</b> two gatherers, nothing crafted. Overlaps Erik's Skinning.</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Frost notes</summary>
+        <p>Ice Lance (11-point talent, 300% damage vs Frozen targets), Frostbite (15% freeze chance on Chill), 3-rank Shatter, Fingers of Frost (21 points), reworked Winter's Chill, baseline Frostfire Bolt. Wands no longer scale with spell damage as of the Sept 24 beta notes.</p>
+        <p>Blizzard with Improved Blizzard, plus Frost Nova freezes, are the AoE tools in the beta guides. A Frost Water Elemental is mentioned by one low-quality site only <span class="tag u">unverified</span>.</p>
+        <p>No source confirms experience from battlegrounds; the documented rewards are Marks and Honor <span class="tag u">unverified</span>. Warsong Gulch opens at level 10.</p>
+        <p>Reserve the name during the Oct 27 – Nov 3 window.</p>
+      </details>
+    </article>
+  </div>
+</section>
+
+<section id="normal">
+  <h2 style="color:var(--blue)">The Julie camp</h2>
+  <p class="sub">Normal ruleset. Separate economy: no shared mail, no shared auction house with the PvP characters. This one has to stand completely on its own. World PvP is opt-in here: you flag yourself manually.</p>
+  <div class="camp">
+    <article class="char normal">
+      <h3>Druid</h3>
+      <p class="role">Self-sufficient · occasional group with Julie</p>
+      <p>Skins what it kills and makes its own armor. First Aid covers healing potions now, so there's no need for Alchemy to stay alive. Balance is the natural leveling spec for the ranged profile; Resto or Feral are there when the group needs them.</p>
+      <dl class="kit">
+        <dt>Race</dt><dd>Skyborne (Windshaper), same as the Shaman. Julie's group will be Horde.</dd>
+        <dt>Professions</dt><dd>Skinning + Leatherworking</dd>
+        <dt>Secondary</dt><dd>Cooking, First Aid, Fishing</dd>
+        <dt>Spec</dt><dd>Open; Balance leans best for solo leveling</dd>
+      </dl>
+      <details>
+        <summary>Druid notes</summary>
+        <p>Prowl is reportedly a trainer spell at 20 for every spec. Feral Swiftness (Cat Form speed) stays Feral-only. Travel Form at 30.</p>
+        <p>DoT crits are confirmed; HoT crits (Rejuvenation, Tranquility, Wild Growth) have no source yet <span class="tag u">unverified</span>.</p>
+      </details>
+    </article>
+  </div>
+</section>
+
+<section id="professions">
+  <h2>Professions at a glance</h2>
+  <p class="sub">Each character gathers or crafts for itself, so nothing stalls when one of them falls behind in level. The Mage, when it starts, can pick up the Warlock's robes and enchants and the Shaman's mana potions.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Character</th><th>Ruleset</th><th>Gathers</th><th>Crafts</th><th>What it makes for itself</th></tr></thead>
       <tbody>
-        <tr>
-          <td>~Oct 1</td>
-          <td>Beta level cap raised to 30</td>
-          <td>Only useful for testing specs — beta progress wipes at launch.</td>
-          <td><span class="conf">Estimated</span></td>
-        </tr>
-        <tr>
-          <td>Oct 27 – Nov 3</td>
-          <td>Early name reservation</td>
-          <td>Race, faction, and ruleset for all four characters need to be locked in before this window opens.</td>
-          <td><span class="conf">Announced</span></td>
-        </tr>
-        <tr>
-          <td>Nov 4, 3:00 pm PST</td>
-          <td>Launch</td>
-          <td>Beta progress wipes. Day one: create all characters, park two at an inn for rested XP, level the Warlock first.</td>
-          <td><span class="conf">Verified</span></td>
-        </tr>
-        <tr>
-          <td>Dec 9</td>
-          <td>First raids open (Barrow Deeps 10, Hyjal Summit 20)</td>
-          <td>Only relevant if the old raid crew actually materializes — no leveling pressure otherwise.</td>
-          <td><span class="conf">Announced</span></td>
-        </tr>
-        <tr>
-          <td>Jan 11, 2027</td>
-          <td>Warcraft Forever Collection leaves the shop</td>
-          <td>Last day to buy the bundle that includes the Skyborne pack, if that's the preferred purchase path.</td>
-          <td><span class="conf">Announced</span></td>
-        </tr>
+        <tr><td>Troll Warlock</td><td class="rs-pvp">PvP</td><td>None</td><td>Tailoring + Enchanting</td><td>Robes, bags, enchants; can gear the Mage later</td></tr>
+        <tr><td>Skyborne Shaman</td><td class="rs-pvp">PvP</td><td>Herbalism</td><td>Alchemy</td><td>Mana potions, elixirs, flasks</td></tr>
+        <tr><td>Druid</td><td class="rs-normal">Normal</td><td>Skinning</td><td>Leatherworking</td><td>Its own armor, armor kits</td></tr>
+        <tr><td>Frost Mage</td><td class="rs-bench">Bank alt</td><td colspan="3">Open. Mining, Engineering and Blacksmithing are the uncovered options; see the Mage card.</td></tr>
       </tbody>
     </table>
-  </section>
+  </div>
+  <div class="note">
+    <p><b>Everyone:</b> Cooking (Well Fed gives +5% experience from kills), First Aid (healing potions moved here from Alchemy), Fishing (Fish Bowl, 8% stats).</p>
+    <p><b>Legacy points:</b> only crafting professions earn them (150/225/300). Alchemy, Tailoring, Enchanting and Leatherworking: no duplicates. Legacy perks are account-wide <span class="tag u">unverified</span>; whether the crafting-skill points are once per account and span rulesets is <span class="tag u">unverified</span> too.</p>
+  </div>
+</section>
 
-  <!-- ============ OPEN QUESTIONS ============ -->
-  <section class="block">
-    <h2>Open questions before this plan is final</h2>
-    <ul class="open-q">
-      <li><span class="q-mark">?</span> Is Julie's group actually Horde? Confirms or breaks the Undead Mage pick.</li>
-      <li><span class="q-mark">?</span> Does Forever have dual spec? Not announced as of Sept 26 — a claim that it unlocks at level 40 for 50 gold traces to a single gold-selling site and is likely invented.</li>
-      <li><span class="q-mark">?</span> Can a full group skin the same corpse? Erik's claim from a phone call, no source found yet.</li>
-      <li><span class="q-mark">?</span> Is a Skyborne pack purchased yet? Not as of Sept 26 — needed before the Druid alt exists.</li>
-      <li><span class="q-mark">?</span> Desktop or Legion Go for play? Still unset — the beta client is currently running on a MacBook.</li>
-    </ul>
-  </section>
+<section id="erik">
+  <h2>For Erik: Feral Bear tank</h2>
+  <p class="sub">Skinning + Leatherworking. Here's how the Shaman fits next to him.</p>
+  <div class="two">
+    <div>
+      <h3>Why the Shaman pairs well</h3>
+      <ul>
+        <li>Totems and off-heals cover what a solo Bear can't, and the Shaman's damage stays at range while he holds the pull.</li>
+        <li>No gear fights: Intellect caster gear vs his Agility and Stamina leather.</li>
+        <li>Herbing next to a tank is the safest gathering on the PvP ruleset.</li>
+        <li>On Warlock nights: Fear and Banish cover crowd control the Bear can't. Turn off the Voidwalker's taunt first.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Worth checking together</h3>
+      <ul>
+        <li>Whether every group member can skin the same corpse. Erik's read, no source yet.</li>
+        <li>Whether he adds a Hunter alt, which changes who's around on a given night.</li>
+        <li>Whether Engineering gadgets work in battlegrounds, if the Mage takes it and once the cap allows testing.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-  <footer class="foot">
-    <p>Built from the Video Games Second Brain Notion workspace (Game Library, Builds &amp; Loadouts, Content Calendar, Verification Log). Talent and racial numbers reflect the beta build as of Sept 26, 2026, and can change before launch. Where this page and the Verification Log disagree, the log wins — it's the one that gets rechecked.</p>
-  </footer>
+<section id="rulesets">
+  <h2>Rulesets, plainly</h2>
+  <div class="two">
+    <div>
+      <h3>Confirmed</h3>
+      <ul>
+        <li>No realms. Normal, PvP and Roleplaying at launch; Hardcore after launch.</li>
+        <li>PvP locks the account to one faction. Normal, RP and Hardcore allow both.</li>
+        <li>No cross-ruleset or cross-faction grouping or trading.</li>
+        <li>Battlegrounds mix players from different rulesets, except Hardcore.</li>
+        <li>No shared mob tagging.</li>
+        <li>On Normal, RP and Hardcore, world PvP needs manual flagging.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Logged, not yet confirmed</h3>
+      <ul>
+        <li>On the PvP ruleset, zones above level 15 are contested and auto-flag you.</li>
+        <li>Mailing gold or items to your own opposite-faction characters.</li>
+        <li>Whether auction houses split by faction within a ruleset.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="dates">
+  <h2>Dates that affect this plan</h2>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Date</th><th>Event</th><th>Why it matters</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>~Oct 1</td><td>Beta level cap raised to 30</td><td>Test Elemental and Balance leveling; beta progress wipes at launch.</td><td>Estimated</td></tr>
+        <tr><td>Oct 27 – Nov 3</td><td>Early name reservation</td><td>Lock race, faction and ruleset for the Warlock, Shaman, Druid and Mage. The Heroic Pack includes early reservation.</td><td>Announced</td></tr>
+        <tr><td>Nov 4, 3:00 pm PST</td><td>Launch</td><td>Create the Warlock, Shaman and Druid; park the Shaman and Druid at an inn for rested XP; level the Warlock first. Create the Mage too and park it at the auction house.</td><td>Verified</td></tr>
+        <tr><td>Dec 9</td><td>First raids open (Barrow Deeps 10, Hyjal Summit 20)</td><td>Only matters if a raid group actually forms. No leveling pressure otherwise.</td><td>Announced</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="open">
+  <h2>Still open</h2>
+  <ol class="qs">
+    <li>Mage professions: Mining + Engineering, Mining + Blacksmithing, or another pair. Not needed until it reaches level 5.</li>
+    <li>Druid leveling spec. Balance fits the ranged profile best.</li>
+    <li>Julie's group: Horde per you. Worth confirming with her before name reservation opens on Oct 27.</li>
+    <li>Battleground XP: no source confirms it, so the Mage's battleground share of leveling is a plan, not a fact.</li>
+    <li>Frost Water Elemental: unconfirmed, and it can't be checked under the level cap.</li>
+    <li>Dual spec: not announced. A "level 40 for 50 gold" claim traces to a gold-selling site and is likely invented.</li>
+    <li>Engineering in battlegrounds, Legacy point scope, free Felsteed: all waiting on a higher cap or launch.</li>
+    <li>Legion Go: the install test for auction house and crafting is still to do.</li>
+  </ol>
+</section>
+</main>
+
+<footer>
+  <p>Built from the Video Games Second Brain Notion workspace: Game Library, Builds &amp; Loadouts, Content Calendar and the Verification Log. Talent and racial numbers reflect the beta build as of late September 2026 and can change before launch.</p>
+  <p>Where this page and the Verification Log disagree, the log wins. It's the one that gets rechecked.</p>
+</footer>
 </div>
-
 </body>
 </html>
