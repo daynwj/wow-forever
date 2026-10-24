@@ -6,25 +6,45 @@
 <title>WoW: Forever · Roster Plan</title>
 <style>
 :root{
-  --bg:#0a1228;
-  --surface:#111c3d;
-  --surface2:#1a2a5c;
-  --line:#5a70b8;
-  --text:#f1f4ff;
-  --muted:#b9c4ea;
-  --red:#dc0000;
-  --red-text:#ff8077;
+  --bg:#f4f6fb;
+  --surface:#ffffff;
+  --surface2:#e6ebf6;
+  --line:#6f7fa8;
+  --text:#0d1430;
+  --muted:#3f4a6b;
+  --red:#c00000;
+  --red-text:#a80000;
   --blue-solid:#0033a0;
-  --blue-text:#8fb2ff;
-  --ok:#6fe0a0;
-  --warn:#f5c451;
-  --bad:#ff8a80;
+  --blue-text:#1a45c4;
+  --ok:#11683c;
+  --warn:#7a4f00;
+  --bad:#b3261e;
+  --info:#1a45c4;
   --on-accent:#ffffff;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0a1228;--surface:#111c3d;--surface2:#1a2a5c;--line:#5a70b8;--text:#f1f4ff;--muted:#b9c4ea;
+    --red:#dc0000;--red-text:#ff8077;--blue-solid:#0033a0;--blue-text:#8fb2ff;--ok:#6fe0a0;--warn:#f5c451;--bad:#ff8a80;--info:#8fb2ff;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0a1228;--surface:#111c3d;--surface2:#1a2a5c;--line:#5a70b8;--text:#f1f4ff;--muted:#b9c4ea;
+  --red:#dc0000;--red-text:#ff8077;--blue-solid:#0033a0;--blue-text:#8fb2ff;--ok:#6fe0a0;--warn:#f5c451;--bad:#ff8a80;--info:#8fb2ff;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--blue-solid)}
+.t-user{color:var(--info)}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);height:100%}
 body{font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column}
-header{background:var(--blue-solid);color:var(--on-accent);padding:calc(14px + env(safe-area-inset-top,0px)) 18px 14px;border-bottom:4px solid var(--red)}
+header{background:var(--blue-solid);color:var(--on-accent);padding:14px 18px;border-bottom:4px solid var(--red)}
 header h1{margin:0;font-size:22px;line-height:1.2}
 header p{margin:4px 0 0;font-size:14px;color:var(--on-accent)}
 main{flex:1;overflow-y:auto;padding:16px 16px 28px;background:var(--bg);max-width:860px;width:100%;margin:0 auto}
@@ -70,7 +90,7 @@ details .body{padding:0 14px 12px}
 .t-conf{color:var(--bad)}
 a{color:var(--blue-text)}
 .t-test{color:var(--bad)}
-nav{display:flex;overflow-x:auto;background:var(--surface2);border-top:3px solid var(--red);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav{display:flex;overflow-x:auto;background:var(--surface2);border-top:3px solid var(--red);}
 nav button{flex:1 0 auto;min-width:74px;min-height:54px;font:inherit;font-size:16px;font-weight:600;color:var(--muted);background:var(--surface2);border:none;border-right:1px solid var(--line);cursor:pointer;padding:6px 1px}
 nav button:last-child{border-right:none}
 nav button.active{background:var(--red);color:var(--on-accent)}
@@ -101,7 +121,7 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
     <tbody>
       <tr><td>Skyborne cat druid, male</td><td>PvP</td><td>Main, with Erik</td><td>Herbalism + Alchemy, Cooking, First Aid</td><td>Purrhaps Shiftsalot (locked)</td></tr>
       <tr><td>Tauren shaman, male</td><td>PvP</td><td>Backup, played with Erik’s warlock</td><td>Skinning + Leatherworking (Dragonscale), Cooking, First Aid</td><td>Totemtotes Thunderhoof or Mooljolnir Thunderhoof</td></tr>
-      <tr><td>Undead warlock, female</td><td>PvP</td><td>Bank alt that also levels through PvP</td><td>Tailoring + Enchanting</td><td>Return Tosender (planned; was Countess Dottula)</td></tr>
+      <tr><td>Undead warlock, female</td><td>PvP</td><td>Bank alt that also levels through PvP</td><td>Skinning + Tailoring to start; Tailoring + Enchanting once the shaman starts</td><td>Return Tosender (planned; was Countess Dottula)</td></tr>
       <tr><td>Troll warlock, female</td><td>Normal</td><td>Group main, Julie’s group</td><td>Tailoring + Enchanting</td><td>To come</td></tr>
     </tbody>
   </table></div>
@@ -149,6 +169,43 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
         <li>Spec 2 at 40 is Resto, in theory. Check the Swiftmend and Natural Shapeshifter prerequisites in the calculator.</li>
         <li><strong>Shredding Attacks:</strong> Warcraft Tavern’s Forever feral build skips it, because a solo cat rarely gets behind a target. This build keeps it, because Erik’s bear holds the target and the cat can Shred from behind.</li>
         <li><strong>Travel Form at 30</strong> picks herbs and quest items without leaving form, and druids can use consumables in any form <span class="tag t-ok">✓ Verified</span>.</li>
+        <li><strong>Swipe</strong> hits 3 targets <span class="tag t-ok">✓ Verified</span>. <strong>Faerie Fire</strong> is free in forms on a 6-second cooldown; use it to pull or stop a runner <span class="tag t-ok">✓ Verified</span>. <strong>Shifting Power</strong>: 40 Energy for about 55% of base mana, 16-second cooldown, unusable at full Energy (beta values) <span class="tag t-ok">✓ Verified</span>.</li>
+      </ul>
+      <h3>Fighting in Bear, 10–19</h3>
+      <ol class="todo">
+        <li>Mark of the Wild before the pull.</li>
+        <li>Wrath or Moonfire from range. Wrath’s base damage went up about 50% on Sept 24 and needs no talents <span class="tag t-ok">✓ Verified</span>.</li>
+        <li>Shift to Bear as the mob closes, Enrage for rage (level unchecked <span class="tag t-unv">? Unverified</span>), then Maul whenever you have rage.</li>
+        <li>Demoralizing Roar on tougher mobs; Bash a caster <span class="tag t-unv">? Unverified</span> level.</li>
+        <li>Two or three mobs from 16: Demoralizing Roar, Swipe, Maul the one you want dead first.</li>
+        <li>After: shift out, Rejuvenation, eat and drink. Don’t shift out mid-fight; you lose rage and pay mana.</li>
+      </ol>
+      <h3>Fighting in Cat, 20–39</h3>
+      <ol class="todo">
+        <li>Prowl in behind the target. Open with Shred (22) or Rake (24); Ravage (32) or Pounce (36) once you have them <span class="tag t-prov">◐ Provisional</span> (ability levels from client data).</li>
+        <li>Build combo points with Claw from the front or Shred from behind. Spend Omen of Clarity procs on the most expensive attack.</li>
+        <li>Finish with Rip on mobs that live a while, Ferocious Bite on mobs that die fast.</li>
+        <li>Shifting Power from 25 when Energy runs low.</li>
+      </ol>
+      <h3>With Shift Happens tanking</h3>
+      <ul>
+        <li>Let Erik pull and give him two or three seconds of threat. Bear Form’s threat bonus is 50% in the Oct 8 beta notes <span class="tag t-prov">◐ Provisional</span>.</li>
+        <li>Prowl in behind, Shred or Rake to open, Rip on long fights, Bite to finish.</li>
+        <li>Rejuvenation on Erik between bursts; Furor refunds the Energy from the heal break (from 41). Swiftmend is the emergency button once you have it.</li>
+        <li>Two druids duplicate Mark of the Wild and Leader of the Pack, and neither of you can interrupt <span class="tag t-ok">✓ Verified</span>.</li>
+      </ul>
+      <h3>PvP: warlocks and hunters</h3>
+      <ul>
+        <li>Berserk at 40 clears and blocks Fear for 15 seconds. Save it for a warlock’s Fear <span class="tag t-ok">✓ Verified</span>.</li>
+        <li>Hunters can’t stun or interrupt and have an 8-yard dead zone; stay inside it with Feral Charge or Dash <span class="tag t-ok">✓ Verified</span>.</li>
+        <li>Shifting forms frees you from snares (Travel Form confirmed, Cat and Bear reported) <span class="tag t-prov">◐ Provisional</span>. Hibernate takes a pet out of the fight.</li>
+        <li>Warlock DoTs and pets break Prowl. Open on the player from behind, not the pet.</li>
+      </ul>
+      <h3>Controller bars</h3>
+      <ul>
+        <li><strong>Bear:</strong> Maul, Swipe, Demoralizing Roar, Enrage, Bash, Growl.</li>
+        <li><strong>Cat:</strong> Shred or Claw, Rake, Rip, Ferocious Bite, Shifting Power, Prowl, Dash.</li>
+        <li><strong>Both:</strong> Rejuvenation, Healing Touch and the form flyout. The gamepad bar lives in Edit Mode since Oct 8 <span class="tag t-ok">✓ Verified</span>.</li>
       </ul>
     </div>
   </details>
@@ -311,10 +368,10 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
       <tbody>
         <tr><td>Herbalism</td><td class="c dot">●</td><td></td><td></td><td></td><td></td></tr>
         <tr><td>Alchemy</td><td class="c dot">●</td><td></td><td></td><td></td><td></td></tr>
-        <tr><td>Skinning</td><td></td><td class="c dot">●</td><td></td><td class="c dot">●</td><td></td></tr>
+        <tr><td>Skinning</td><td></td><td class="c dot">●</td><td class="c">early</td><td class="c dot">●</td><td></td></tr>
         <tr><td>Leatherworking</td><td></td><td class="c dot">●</td><td></td><td class="c dot">●</td><td></td></tr>
         <tr><td>Tailoring</td><td></td><td></td><td class="c dot">●</td><td></td><td class="c dot">●</td></tr>
-        <tr><td>Enchanting</td><td></td><td></td><td class="c dot">●</td><td></td><td class="c dot">●</td></tr>
+        <tr><td>Enchanting</td><td></td><td></td><td class="c">later</td><td></td><td class="c dot">●</td></tr>
         <tr><td>Mining, Engineering, Blacksmithing</td><td></td><td></td><td></td><td></td><td></td></tr>
         <tr><td>Cooking</td><td class="c dot">●</td><td class="c dot">●</td><td></td><td></td><td></td></tr>
         <tr><td>First Aid</td><td class="c dot">●</td><td class="c dot">●</td><td></td><td></td><td></td></tr>
@@ -350,7 +407,7 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
   <ul>
     <li><strong>Druid:</strong> gathers his own herbs. Makes elixirs and mana potions (Alchemy) and Healing Potions (First Aid, which now owns them) <span class="tag t-ok">✓ Verified</span>. Cooks Well Fed food, +5% kill XP <span class="tag t-ok">✓ Verified</span>.</li>
     <li><strong>Shaman:</strong> skins its own kills, makes leather gear, then Dragonscale mail from 40. Herbs for First Aid come by mail from the druid.</li>
-    <li><strong>Undead warlock:</strong> bank, bags, disenchanting. Enchants her own gear, or anyone’s in a trade. Enchanting Vellum was absent in the beta <span class="tag t-prov">◐ Provisional</span>.</li>
+    <li><strong>Undead warlock:</strong> first a skinner and tailor who banks leather and bags for the shaman; then bank, bags, disenchanting. Enchants her own gear, or anyone’s in a trade. Enchanting Vellum was absent in the beta <span class="tag t-prov">◐ Provisional</span>.</li>
     <li><strong>Troll warlock (Normal):</strong> self-sufficient. Cloth from kills makes her gear and bags, her own greens feed Enchanting, and Life Tap plus Drain Life keep her going.</li>
   </ul>
 
@@ -373,7 +430,7 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
     <thead><tr><th>Character</th><th>Starts</th><th>Where</th><th>Notes</th></tr></thead>
     <tbody>
       <tr><td>Purrhaps Shiftsalot (cat druid)</td><td>Nov 4, first minutes of launch</td><td>Zephras Isle, Valanaar</td><td>With Erik. The main.</td></tr>
-      <tr><td>Return Tosender (Undead warlock)</td><td>Day 2–3</td><td>Deathknell, Tirisfal Glades</td><td>Reaches Orgrimmar around 10–12. Levels through PvP and questing when Erik is ahead.</td></tr>
+      <tr><td>Return Tosender (Undead warlock)</td><td>Day 2–3</td><td>Deathknell, Tirisfal Glades</td><td>Skins and tailors to about level 10, banks leather and bags for the shaman, then heads for Orgrimmar. Levels through PvP and questing when Erik is ahead.</td></tr>
       <tr><td>Tauren shaman</td><td>When you and Erik play alts</td><td>Mulgore</td><td>Backup character.</td></tr>
       <tr><td>Troll warlock (Normal)</td><td>When Julie’s group starts</td><td>Valley of Trials, Durotar</td><td>Separate ruleset; nothing crosses over.</td></tr>
     </tbody>
@@ -390,6 +447,16 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
     </tbody>
   </table></div>
   <p>Ranks: wow-professions’ Forever Alchemy and Enchanting guides and Warcraft Tavern’s milestone tables <span class="tag t-ok">✓ Verified</span>. Not every trainer teaches every rank; small-town “junior” trainers stop at 75.</p>
+
+  <h2>Warlock head start: skins and bags for the shaman</h2>
+  <p>The Undead warlock is created days before the shaman, so she can stock his Leatherworking before he exists.</p>
+  <ol class="todo">
+    <li><strong>Day 2–3:</strong> train Skinning and Tailoring, not Enchanting. Skin every beast in Tirisfal and Silverpine, and keep the linen from humanoids. The druid mails her linen from Zephras Isle.</li>
+    <li><strong>Level 10:</strong> Journeyman Tailoring needs level 10 and skill 50, which is where wool bags and wool gear start (rank gates checked on other crafts; Tailoring assumed the same) <span class="tag t-unv">? Unverified</span>. Make her own cloth gear, then a stack of linen and wool bags.</li>
+    <li><strong>Undercity bank:</strong> leather, hides and bags sit there until the shaman is created. Mail them, plus her Skinning Knife, on his first night.</li>
+    <li><strong>When the shaman starts:</strong> she unlearns Skinning and trains Enchanting. Nothing is lost: Enchanting needs green items to disenchant and level 10 for Journeyman anyway.</li>
+  </ol>
+  <p><strong>Why it’s worth it:</strong> the shaman can start Leatherworking at skill 1 with materials in hand, making leather gear from his first levels and reaching the camp tent (rested XP) at Leatherworking 20 within a session or two <span class="tag t-ok">✓ Verified</span> for when the tent opens. <strong>Limits:</strong> unlearning a profession in Forever is unchecked (Classic: free, skill lost) <span class="tag t-unv">? Unverified</span>. Mail between your own characters was instant in Classic <span class="tag t-unv">? Unverified</span> for Forever. Skinning node counts aren’t a concern: creatures can only be skinned once since Oct 1 <span class="tag t-ok">✓ Verified</span>, so skin your own kills.</p>
 
   <h2>Cat druid: where to train</h2>
   <ul>
@@ -447,6 +514,14 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
     </tbody>
   </table></div>
   <p>From Warcraft Tavern’s Forever class guides <span class="tag t-ok">✓ Verified</span>. Some buffs don’t stack with similar class buffs; the druid guide notes Skinning’s crit doesn’t stack with Leader of the Pack. One object per player per camp <span class="tag t-prov">◐ Provisional</span>. Fishing is the one nobody has; whoever picks it up gives the whole camp +8% to all stats.</p>
+
+  <h2>Rested XP</h2>
+  <ul>
+    <li>Rested XP doubles kill XP until it runs out. Classic rules: it builds while logged out in an inn or a capital, about 5% of a level per 8 hours, capped at 1.5 levels; quest turn-ins don’t use it <span class="tag t-unv">? Unverified</span> for Forever.</li>
+    <li>That makes levels 1–5 a poor place to park: a full pool at level 1 is about 600 XP, at level 10 about 11,400 (Classic numbers) <span class="tag t-unv">? Unverified</span>. Level an alt a little before parking it.</li>
+    <li>The Leatherworking camp tent tops rested up to 5% of a level, with a 1-hour lockout <span class="tag t-ok">✓ Verified</span>. The Cozy Sleeping Bag and cooked food stack with it.</li>
+    <li>Dungeon mob XP is heavily reduced; the XP lives in dungeon quests <span class="tag t-ok">✓ Verified</span>.</li>
+  </ul>
 
   <h2>Cozy Sleeping Bag</h2>
   <p><strong>What it does:</strong> lay it out anywhere that isn’t already rested (not in cities or inns). Each minute on it adds a stack of Well-Rested, +1% XP, up to 3 stacks. It also counts as a rested area while you lie there. It stacks with camp buffs and cooked food, so sleep at the campfire and eat at the same time. One-hour cooldown. <strong>Anyone in the party can use one bag</strong>, so you and Erik can share. It vanishes if you walk about 100 yards away, and PvP-flagged and unflagged players can’t share one <span class="tag t-ok">✓ Verified</span>.</p>
@@ -584,7 +659,7 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
   <h2>Launch order</h2>
   <ol class="todo">
     <li><strong>Nov 4:</strong> create the druid first and play with Erik on Zephras Isle. If Erik is not on, take the druid to 5–6 and log out in the Valanaar inn.</li>
-    <li><strong>Day 2–3:</strong> the Undead warlock from Deathknell. Train Tailoring and Enchanting at 5, pick up the Brill and Undercity flight paths, level in Silverpine to about 10–12 for the Sepulcher flight path, then take the zeppelin to Orgrimmar and bind there.</li>
+    <li><strong>Day 2–3:</strong> the Undead warlock from Deathknell. Train Skinning and Tailoring, pick up the Brill and Undercity flight paths, level in Tirisfal and Silverpine to about 10, banking leather and bags for the shaman (Train tab). Then the Sepulcher flight path and the zeppelin to Orgrimmar.</li>
     <li><strong>When Erik’s warlock is ready:</strong> the shaman starts in Mulgore. Level in Mulgore and Thunder Bluff to about 13–14, then the Barrens. The Crossroads was bumpy at 13 in testing <span class="tag t-prov">◐ Provisional</span>.</li>
     <li><strong>When Julie’s group starts:</strong> the Troll warlock, from the Valley of Trials in Durotar.</li>
   </ol>
@@ -728,6 +803,9 @@ nav button:focus-visible{outline:3px solid var(--text);outline-offset:-3px}
       show(this.getAttribute('data-tab'));
     });
   }
+  // Open a tab from a link such as …#train or …#guides
+  var token = (location.hash || '').replace('#', '');
+  if (token && document.getElementById('p-' + token)) { show('p-' + token); }
 })();
 </script>
 </body>
